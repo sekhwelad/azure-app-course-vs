@@ -1,4 +1,11 @@
+using azure_app_course_vs.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+var cs = builder.Configuration.GetConnectionString("AzureSqlConnection");
+builder.Services.AddDbContext<AppDbContext>(options=> options.UseSqlServer(cs));
 
 builder.Services.AddApplicationInsightsTelemetry();
 
